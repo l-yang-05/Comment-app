@@ -1,27 +1,14 @@
 import React from 'react';
 import './App.css';
+import CommentBox from './Components/CommentBox';
 
 
-
-function App() {
-  const [userComment, setUserComment] = useState('');
-  const [listOfComments, setListOfComments] = useState([])
-
-
-
-  const commentDelete = (e) => {
-    e.preventDefault();
-
-  }
-
+const App = () => {
   return (
-    <div className="main-container">
-      <header>
-        Comments
-      </header>
-      <p>{userComment}</p>
-    </div>
-  );
+    <CommentBox />
+  )
+
 }
+
 
 export default App;
