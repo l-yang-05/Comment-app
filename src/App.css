@@ -21,6 +21,22 @@ textarea{
 }
 
 p{
-  padding: 40px;
+  padding: 10px;
   width: 70%;
+}
+
+.comment{
+  display: block;
+}
+
+.likeAndDislike{
+  display: block;
+}
+
+.msganduser{
+  display:block;
+}
+
+.commentBox{
+  display: block;
 }

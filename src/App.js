@@ -5,7 +5,10 @@ import CommentBox from './Components/CommentBox';
 
 const App = () => {
   return (
-    <CommentBox />
+    <div>
+      <CommentBox />
+    </div>
+
   )
 
 }

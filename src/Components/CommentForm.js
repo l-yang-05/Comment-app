@@ -2,46 +2,34 @@ import React from 'react';
 
 class CommentForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            commenter: '',
-            text: '',
+            author: '',
+            comment: ''
         }
     }
 
-    handleCommenter = (e) => {
-        this.setState({ commenter: e.target.value })
+    handleAuthor = (e) => {
+
     }
 
-    handleText = (e) => {
-        this.setState({ text: e.target.value })
-    }
-
-    handleSubmit = (e) => {
+    handleReply = (e) => {
         e.preventDefault();
-        const commenter = this.state.commenter.trim();
-        const text = this.state.text.trim();
-
-        this.props.onCommentSubmit({ commenter: commenter, text: text });
-        this.setState({ commenter: '', msg: '' });
-
-        if (!text || !commenter) {
-            return;
-        }
-
     }
 
     render() {
         return (
             <div>
-                <form>
-                    <input type="type" name="author" id="author" placeholder="Your Name" value={this.state.commenter} onChange={this.handleCommenter} />
-                    <textarea name="commentSection" id="comment" placeholder="Enter your comment!" value={this.state.text} onChange={this.handleText}></textarea>
-                    <input type="submit" name="sub" id="post" value="post" />
+                <form onSubmit={this.handleReply}>
+                    <input type="text" name="author" placeholder="Enter your name" />
+                    <textarea name="comment" placeholder="Enter your message"></textarea>
+                    <button type="submit" name="post">Reply</button>
                 </form>
             </div>
         )
     }
+
+
 }
 
 export default CommentForm;
