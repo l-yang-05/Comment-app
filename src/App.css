@@ -25,18 +25,17 @@ p{
   width: 70%;
 }
 
-.comment{
-  display: block;
+.comment {
+  font-weight: bold;
 }
 
-.likeAndDislike{
-  display: block;
+.reply-comment{
+  font-style: italic;
 }
 
-.msganduser{
-  display:block;
-}
-
-.commentBox{
-  display: block;
+.commentbox {
+  border: 4px black solid;
+  padding: 5px;
+  width: 50%;
+  margin: 5px;
 }
