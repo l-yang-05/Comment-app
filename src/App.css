@@ -1,41 +1,41 @@
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
+.App {
+  text-align: center;
+}
+
+#root, body {
+  background-color: lavender;
   height: 100vh;
   width: 100%;
-  background-color: #F5CCE8;
-  color: #4A2040;
 }
 
-header {
-  margin-top: 3%;
-  font-size: 50px;
-  font-weight: bold;
+h1 {
+text-align: center;
 }
 
-textarea{
-  font-size: 15px;
+.CommentPost{
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  flex-direction: column;
+  padding:50px;
+}
+
+.startingmsg {
+ text-align: center;
+}
+
+.commentmsg{
+  display:block;
+  margin: 0 auto;
+  background-color:lightblue;
+  height: 80%;
+  width: 50%;
+}
+
+.replied-comment{
+  display:block;
+  margin: 0 auto;
+  background-color: lightgrey;
   width: 30%;
 }
 
-p{
-  padding: 10px;
-  width: 70%;
-}
-
-.comment {
-  font-weight: bold;
-}
-
-.reply-comment{
-  font-style: italic;
-}
-
-.commentbox {
-  border: 4px black solid;
-  padding: 5px;
-  width: 50%;
-  margin: 5px;
-}

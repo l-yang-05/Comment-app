@@ -1,186 +1,120 @@
 import React from 'react';
-import './App.css';
-import DislikeButton from './Dislike';
+import './App.css'
+import ReplyForm from './ReplyForm'
+import RepliedComment from './ReplyComment';
 import LikeButton from './Like';
+import DislikeButton from './Dislike';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      commentArray: [
-        {
-          message: "I want to sleep",
-          showReply: false,
-          reply: [
-            { replies: "Same, I wanna sleep too." },
-          ],
-          id: 1
-        },
-        {
-          message: "Quack",
-          showReply: false,
-          reply: [
-            { replies: "Quack?" }
-          ],
-          id: 2
-        }
-      ]
+      comments: [],
+      commDesc: ''
     }
+
   }
-  ;
 
-  prevId = 2;
-
-
-
-  //creates ref
-  comment = React.createRef();
-  reply = React.createRef();
-
-
-  //addMessage message is passed messaged and adds it to state
-  addMessage = message => {
-    this.setState(prevState => {
-      return {
-        commentArray: [
-          ...prevState.commentArray,
-          {
-            message,
-            showReply: false,
-            reply: [
-              { replies: '' }
-            ],
-            id: (this.prevId += 1)
-          }
-        ]
-      };
-    });
-  };
-
-  //handleSubmit method is passing the comment ref value to my addMessage message
-  handleSumbit = (e) => {
-    e.preventDefault();
-    this.addMessage(this.comment.current.value);
-    e.currentTarget.reset();
-  };
-
-  //this removes message with filter by returning array withut selected id object
-  handleRemove = (id) => {
-    this.setState(prevState => {
-      return {
-        commentArray: prevState.commentArray.filter(p => p.id !== id)
-      };
-    });
-  };
-
-  handleRemoveReply = (index) => {
-    let replyArray = this.state.commentArray.reply
+  getMessage = (event) => {
     this.setState({
-      reply: replyArray.splice(index, 1)
+      commDesc: event.target.value
     })
   }
 
+  showReplyForm = (index) => {
+    const newComment = [...this.state.comments]
+    newComment[index].showReplyForm = !newComment[index].showReplyForm
+    this.setState({ comments: newComment })
+  }
 
 
-
-  //findProperty reusable function toggles property
-  findProperty = (property, id) => {
+  submitComment = (e) => {
+    e.preventDefault()
+    const newComment = [...this.state.comments] //copy of comments array
+    const commentsObj = {
+      commDesc: this.state.commDesc,
+      replies: [],
+      showReplyForm: false
+    }
+    newComment.push(commentsObj)
     this.setState({
-      commentArray: this.state.commentArray.map(comment => {
-
-        if (id === comment.id) {
-          return {
-            ...comment,
-            [property]: !comment[property]
-          };
-        }
-        return comment;
-      })
-    });
-  };
-
-  //toggles showReply
-  toggleReply = (id) => {
-    this.findProperty("showReply", id);
-  };
-
-
-  //creates a new reply object
-  addReply = (reply, id) => {
-    this.setState({
-      commentArray: this.state.commentArray.map(comment => {
-        if (id === comment.id) {
-          return {
-            ...comment,
-            reply: [
-              ...comment.reply,
-              { replies: reply }
-            ]
-          }
-        }
-        return comment;
-      })
+      comments: newComment
     })
 
   }
 
-  //gets input from ref, passes it to addreply
-  handleReplyComment = (id, e) => {
-    e.preventDefault();
-    this.addReply(this.reply.current.value, id);
-    e.currentTarget.reset();
+
+  handleReplied = (indexToOriginalComment, indexToRepliedComment) => {
+    const newComment = [...this.state.comments]
+    newComment[indexToOriginalComment].replies.splice(indexToRepliedComment, 1)
+    this.setState({
+      comments: newComment
+    })
+  }
+
+  handleReplyPost = (event, index) => {
+    const newComment = [...this.state.comments]
+    const commentsObj = {
+      commDesc: event.target.previousSibling.value,
+      likes: 0,
+      dislikes: 0,
+    }
+    newComment[index].replies.push(commentsObj)
+    newComment[index].showReplyForm = !newComment[index].showReplyForm
+    this.setState({ comments: newComment })
+  }
+
+  handleDeleteComment = (index) => {
+    const newComment = [...this.state.comments]
+    newComment.splice(index, 1)
+    this.setState({
+      comments: newComment
+    })
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <div>
-          {this.state.commentArray.map((item, index) => {
+    const allCommArray = this.state.comments.map((commentObj, ogCommID) => {
+      return (
+        <React.Fragment>
+          <div key={commentObj.commDesc + ogCommID} className="commentmsg">
+            <h2>{commentObj.commDesc}</h2>
+            <LikeButton />
+            <DislikeButton />
+            <button onClick={() => this.showReplyForm(ogCommID)}>Reply</button>
+            <button onClick={() => this.handleDeleteComment(ogCommID)}>Delete</button>
+          </div>
+          {commentObj.replies.map((theCommObject, replyCommID) => {
             return (
-              <div key={index} className="commentbox">
-                <p className="comment">{item.message}</p>
-                <div>
-                  <LikeButton />
-                  <DislikeButton />
-                  <button onClick={() => this.handleRemove(item.id)}>Delete Comment</button>
-                  <button onClick={() => this.toggleReply(item.id)}>Reply</button>
-                  {item.showReply && (
-                    <form onSubmit={(e) => this.handleReplyComment(item.id, e)}>
-                      <textarea ref={this.reply} placeholder="reply to comment"></textarea>
-                      <button>Submit</button>
-                    </form>
-                  )}
-                </div>
-                {item.reply.map((reps, index) => {
-                  return (
-                    <div className="reply">
-                      <h5 className="reply-comment">
-                        {item.reply[item.reply.length - 1].replies ? `in reply to '${item.message}'` : ""}
-                      </h5>
-                      <p>{reps.replies}</p>
-                      <LikeButton />
-                      <DislikeButton />
-                      <button onClick={() => this.handleRemoveReply(index)}>Delete Reply</button>
-                    </div>
-
-                  )
-                })}
-
-              </div>
-            );
+              <React.Fragment>
+                <h5>{`in reply to ${commentObj.commDesc}`}</h5>
+                <RepliedComment ogCommID={ogCommID} theCommObject={theCommObject} replyCommID={replyCommID} handleReplied={this.handleReplied}
+                />
+              </React.Fragment>
+            )
           })}
-          {/* 
-          <div className="commentform-wrapper">
-            <form onSubmit={this.handleSumbit}>
-              <textarea name="commentbox" ref={this.comment} placeholder="Enter your message here!"></textarea>
-              <button type="submit" name="postComment">Post Comment</button>
-            </form>
-          </div> */}
-        </div>
-      </React.Fragment >
-    );
+          {commentObj.showReplyForm && (
+            <ReplyForm index={ogCommID} handleReplyPost={this.handleReplyPost} />
+          )}
+        </React.Fragment>
+      )
+    })
+
+    return (
+      <div>
+        <h1>Enter in a comment!</h1>
+        <form className="CommentPost">
+          <textarea onChange={this.getMessage} className="comment-box" />
+          <button onClick={this.submitComment} type="button">Post Comment</button>
+        </form>
+        <p className="startingmsg">{allCommArray.length > 0 ? allCommArray : 'Add a comment to start the thread :)'}</p>
+      </div>
+
+    )
   }
+
 }
 
 export default App;
+
+
+
