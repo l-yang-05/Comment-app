@@ -12,6 +12,16 @@ h1 {
 text-align: center;
 }
 
+.post-main{
+  background-color: #EE4266;
+  border-radius: 20px;
+  height: 50px;
+  width:200px;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+
 .CommentPost{
   display: flex;
   margin: 0 auto;
@@ -24,10 +34,19 @@ text-align: center;
  text-align: center;
 }
 
+.comment-box{
+  margin-top: 20px;
+  height: 80px;
+  width: 500px;
+  font-size: 20px;
+}
+
 .commentmsg{
   display:block;
   margin: 0 auto;
-  background-color:lightblue;
+  background-color:#B0E0E6;
+  border: 3px solid #540D6E;
+  border-radius: 20px;
   height: 80%;
   width: 50%;
 }
