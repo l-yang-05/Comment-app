@@ -1,6 +1,6 @@
 ## Comment App
 
-I created this commment box application when I was attending Road to Hire. This application allows users to like/dislike comments, reply to these comments, and even deleting them. This comment application was built using React and deploying it through Netlify.
+This application allows users to create a thread of comments where they can reply to one another's comments. Users are also able to thumbs up or thumbs down a comment in the thread. Alongside this, users can even delete their comments that are in the thread. I built this application using React and deploying it through Netlify.
 
 ## Getting Started
 
