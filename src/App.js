@@ -104,7 +104,7 @@ class App extends React.Component {
         <h1>Enter in a comment!</h1>
         <form className="CommentPost">
           <textarea onChange={this.getMessage} className="comment-box" />
-          <button onClick={this.submitComment} type="button">Post Comment</button>
+          <button onClick={this.submitComment} className="post-main" type="button">Post Comment</button>
         </form>
         <p className="startingmsg">{allCommArray.length > 0 ? allCommArray : 'Add a comment to start the thread :)'}</p>
       </div>
