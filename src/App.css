@@ -15,10 +15,14 @@ text-align: center;
 .post-main{
   background-color: #EE4266;
   border-radius: 20px;
+  color: white;
+  font-weight: bold;
   height: 50px;
   width:200px;
   font-size: 15px;
-  margin-top: 15px;
+  margin-top: 8%;
+  box-shadow: #e31964 2px 2px 15px;
+  border: transparent;
 }
 
 
@@ -36,26 +40,36 @@ text-align: center;
 
 .comment-box{
   margin-top: 20px;
-  height: 50px;
+  height: 100px;
   width: 500px;
   font-size: 20px;
+  padding: 20px;
+  border: black 2px solid;
+  border-radius: 20px 5px;
+  box-shadow: #522cc1 2px 2px 20px;
 }
 
 .commentmsg{
   margin-top: 5%;
-  display:block;
+  display: block;
   margin: 0 auto;
-  background-color:#B0E0E6;
+  background-color: #d7f8fc;
   border: 3px solid #540D6E;
-  border-radius: 20px;
+  box-shadow: #63e3e5 2px 2px 20px;
+  border-radius: 5px 25px;
   height: 80%;
   width: 50%;
+  font-weight:bold;
 }
 
 .replied-comment{
-  display:block;
+  display: block;
   margin: 0 auto;
-  background-color: lightgrey;
-  width: 30%;
+  background-color: #bdffc7;
+  width: 40%;
+  border: 3px purple solid;
+  border-radius: 5px 20px;
+  font-weight: bold;
+  box-shadow: #27e527 2px 2px 15px;
 }
 
