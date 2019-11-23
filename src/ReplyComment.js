@@ -6,10 +6,12 @@ import DislikeButton from './Dislike';
 const RepliedComment = (props) => {
     return (
         <div className='replied-comment'>
-            <p>{props.theCommObject.commDesc}</p>
-            <LikeButton />
-            <DislikeButton />
-            <button onClick={() => props.handleReplied(props.ogCommID, props.replyCommID)}>Delete</button>
+            <h2>{props.theCommObject.commDesc}</h2>
+            <div className="likeDislike">
+                <LikeButton />
+                <DislikeButton />
+            </div>
+            <button className="delete" onClick={() => props.handleReplied(props.ogCommID, props.replyCommID)}>Delete</button>
         </div>
     )
 }

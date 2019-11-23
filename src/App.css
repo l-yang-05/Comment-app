@@ -3,13 +3,17 @@
 }
 
 #root, body {
-  background-color: lavender;
+  background-image: url('https://i.redd.it/4gwr6brwjhu01.png');
+  background-repeat: none;
+  background-size: cover;
   height: 100vh;
   width: 100%;
+
 }
 
 h1 {
 text-align: center;
+margin-top:3%;
 }
 
 .post-main{
@@ -20,11 +24,17 @@ text-align: center;
   height: 50px;
   width:200px;
   font-size: 15px;
-  margin-top: 8%;
   box-shadow: #e31964 2px 2px 15px;
   border: transparent;
 }
 
+
+.addComment{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .CommentPost{
   display: flex;
@@ -36,6 +46,50 @@ text-align: center;
 
 .startingmsg {
  text-align: center;
+ background-color: white;
+}
+
+.reply-Form{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reply-button{
+  background-color: #450d9a;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  height: 50px;
+  width: 200px;
+  font-size: 15px;
+  box-shadow: #7c07cd 2px 2px 15px;
+  border: transparent;
+}
+
+.replyDelete{
+  display: flex;
+  flex-direction: row;
+  margin:10px;
+}
+
+.replyDelete button{
+  background-color: #3430b0;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  margin: 5px;
+  width: 150px;
+  font-size: 15px;
+  box-shadow: #213bd9 2px 2px 15px;
+  border: transparent;
+}
+
+
+span{
+  margin-left: 0 !important;
 }
 
 .comment-box{
@@ -46,10 +100,23 @@ text-align: center;
   padding: 20px;
   border: black 2px solid;
   border-radius: 20px 5px;
+  margin-bottom: 40px;
   box-shadow: #522cc1 2px 2px 20px;
 }
 
+.likeDislike{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .commentmsg{
+  display: flex !important;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 5%;
   display: block;
   margin: 0 auto;
@@ -59,11 +126,12 @@ text-align: center;
   border-radius: 5px 25px;
   height: 80%;
   width: 50%;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .replied-comment{
   display: block;
+  text-align: center;
   margin: 0 auto;
   background-color: #bdffc7;
   width: 40%;
@@ -71,5 +139,19 @@ text-align: center;
   border-radius: 5px 20px;
   font-weight: bold;
   box-shadow: #27e527 2px 2px 15px;
+  margin-bottom: 40px;
 }
 
+
+.delete{
+  background-color: #255b13;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  margin: 13px;
+  width: 150px;
+  font-size: 15px;
+  box-shadow: #0a8128 2px 2px 15px;
+  border: transparent;
+}

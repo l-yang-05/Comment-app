@@ -78,10 +78,14 @@ class App extends React.Component {
         <React.Fragment>
           <div key={commentObj.commDesc + ogCommID} className="commentmsg">
             <h2>{commentObj.commDesc}</h2>
-            <LikeButton />
-            <DislikeButton />
-            <button onClick={() => this.showReplyForm(ogCommID)}>Reply</button>
-            <button onClick={() => this.handleDeleteComment(ogCommID)}>Delete</button>
+            <div className="likeDislike">
+              <LikeButton />
+              <DislikeButton />
+            </div>
+            <div className="replyDelete">
+              <button onClick={() => this.showReplyForm(ogCommID)}>Reply</button>
+              <button onClick={() => this.handleDeleteComment(ogCommID)}>Delete</button>
+            </div>
           </div>
           {commentObj.replies.map((theCommObject, replyCommID) => {
             return (
@@ -103,10 +107,11 @@ class App extends React.Component {
       <div>
         <h1>Enter in a comment!</h1>
         <form className="CommentPost">
-          <textarea onChange={this.getMessage} className="comment-box" />
+          <textarea onChange={this.getMessage} className="comment-box" placeholder="Begin typing your story!" />
           <button onClick={this.submitComment} className="post-main" type="button">Post Comment</button>
         </form>
-        <p className="startingmsg">{allCommArray.length > 0 ? allCommArray : 'Add a comment to start the thread :)'}</p>
+        <>{allCommArray.length > 0 ? allCommArray : ""}</>
+
       </div>
 
     )
